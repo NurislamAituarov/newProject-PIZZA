@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const addedPizzas = useSelector((state) => state.totalCount);
+  const addedPizzas = useSelector((state) => state.count);
+
   const prices = useSelector((state) => state.totalPrices);
   return (
     <div className="header">
@@ -48,7 +49,7 @@ const Header = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>{addedPizzas.length}</span>
+            <span>{addedPizzas}</span>
           </NavLink>
         </div>
       </div>

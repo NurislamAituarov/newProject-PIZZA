@@ -1,9 +1,9 @@
 import './content-top.scss';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSortBy } from '../../action/action';
+import { setSortBy, setCategoryFilter } from '../../action/action';
 
-const ContentTop = ({ state }) => {
+const ContentTop = memo(({ state }) => {
   const [active, setActive] = useState('Все');
   const [sort, setSort] = useState(false);
   const [sortFilter, setSortFilter] = useState('популярности');
@@ -26,6 +26,10 @@ const ContentTop = ({ state }) => {
   const onSortFilter = () => {
     setSort(!sort);
   };
+  const onClickCategory = (item, index) => {
+    setActive(item);
+    dispatch(setCategoryFilter(index));
+  };
 
   return (
     <div className="content__top">
@@ -35,7 +39,7 @@ const ContentTop = ({ state }) => {
             return (
               <li
                 className={active === item ? 'active' : null}
-                onClick={() => setActive(item)}
+                onClick={() => onClickCategory(item, index)}
                 key={index}>
                 {' '}
                 {item}
@@ -83,6 +87,6 @@ const ContentTop = ({ state }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ContentTop;

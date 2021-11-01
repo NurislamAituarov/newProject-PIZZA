@@ -6,9 +6,13 @@ import { Route } from 'react-router-dom';
 import Cart from '../cart/Cart';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { memo } from 'react';
 
-const App = () => {
-  const filter = useSelector((state) => state);
+const App = memo(() => {
+  const test = useSelector((state) => state);
+  const filter = useSelector((state) => state.filterCategory);
+  const array = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
   const state = useSelector((state) => {
     switch (state.filterPrice) {
       case 'популярности':
@@ -33,7 +37,25 @@ const App = () => {
         return state.pizza;
     }
   });
-  // console.log(state);
+  const filterState = state.filter((el) => {
+    switch (filter) {
+      case 0:
+        return el;
+      case 1:
+        return el.category === 1;
+      case 2:
+        return el.category === 2;
+      case 3:
+        return el.category === 3;
+      case 4:
+        return el.category === 4;
+      case 5:
+        return el.category === 5;
+      default:
+        return el;
+    }
+  });
+  // console.log(filter, filterState);
   return (
     <div className="App">
       <div className="wrapper">
@@ -41,13 +63,11 @@ const App = () => {
         <Route exact path="/">
           <div className="content">
             <div className="container">
-              <ContentTop
-                state={['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']}
-              />
+              <ContentTop state={array} />
               <h2 className="content__title">Все пиццы</h2>
               <TransitionGroup components="div" className="content__items">
-                {state.map((item) => (
-                  <CSSTransition key={item.id} timeout={1000} classNames="my-node">
+                {filterState.map((item) => (
+                  <CSSTransition key={item.id} timeout={500} classNames="my-node">
                     <ContentsItem key={item.id} state={item} />
                   </CSSTransition>
                 ))}
@@ -59,6 +79,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+});
 
 export default App;

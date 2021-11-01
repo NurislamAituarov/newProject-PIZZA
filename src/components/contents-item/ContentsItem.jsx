@@ -4,21 +4,18 @@ import { useState, memo } from 'react';
 import { addPizza } from '../../action/action';
 
 const ContentsItem = memo(({ state }) => {
-  // console.log(state.category);
   const typeName = ['тонкое', 'традиционное'];
   const sizes = [26, 30, 40];
 
   const [activeType, setActiveType] = useState(typeName[state.types[0]]);
   const [activeSizes, setActiveSizes] = useState(state.sizes[0]);
   const totalAddAll = useSelector((state) => state.filterPizzaId);
-  const [basket, setBasket] = useState(0);
   const dispatch = useDispatch();
 
   function onSelectType(type) {
     setActiveType(type);
   }
   function addToBasket() {
-    setBasket((basket) => basket + 1);
     const item = {
       id: state.id,
       name: state.name,
@@ -89,7 +86,7 @@ const ContentsItem = memo(({ state }) => {
               fill="white"
             />
           </svg>
-          <span>{basket === 0 ? 'Добавить' : 'Добавлено'}</span>
+          <span>Добавить</span>
           {totalAddAll[state.id] && <i>{totalAddAll[state.id].length}</i>}
         </div>
       </div>

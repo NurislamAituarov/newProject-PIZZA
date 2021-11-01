@@ -2,8 +2,9 @@ import pizza from '../server';
 const initialState = {
   pizza,
   filterPizzaId: [],
-  count: null,
+  count: 0,
   filterPrice: 'популярности',
+  filterCategory: 0,
   category: 0,
   totalPrices: 0,
   totalCount: [],
@@ -22,24 +23,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         category: action.payload,
       };
+    case 'SET_CATEGORY_FILTER':
+      return {
+        ...state,
+        filterCategory: action.payload,
+      };
     case 'ADD_PIZZA': {
-      // console.log(action.item);
       const newItems = {
         ...state.filterPizzaId,
         [action.item.id]: !state.filterPizzaId[action.item.id]
           ? [action.item]
           : [...state.filterPizzaId[action.item.id], action.item],
       };
-      // console.log(newItems);
       const allPizza = Object.values(newItems).flat();
       const allPrices = allPizza.reduce((sum, obj) => obj.price + sum, 0);
 
       return {
         ...state,
-        count: action.item,
         filterPizzaId: newItems,
         totalCount: allPizza,
         totalPrices: allPrices,
+        count: allPizza.length,
       };
     }
     case 'DELETED_BASKET':
@@ -48,13 +52,25 @@ const reducer = (state = initialState, action) => {
         filterPizzaId: [],
         totalCount: [],
         totalPrices: 0,
+        count: 0,
       };
     case 'DELETED_BASKET_ITEM':
+      const newCount =
+        state.filterPizzaId[action.id] && state.count - state.filterPizzaId[action.id].length;
+      const newTotalPrices =
+        state.totalPrices -
+        state.filterPizzaId[action.id].filter((item) => item.id === action.id)[0].price;
+      delete state.filterPizzaId[action.id];
       return {
         ...state,
-        totalPrices:
-          state.totalPrices - state.totalCount.filter((item) => item.id === action.id)[0].price,
-        totalCount: state.totalCount.filter((item) => item.id !== action.id),
+        count: newCount,
+        totalPrices: newTotalPrices,
+
+        // totalCount: state.totalCount.filter((item) => item.id !== action.id),
+        // filterPizzaId: {
+        //   ...state.filterPizza,
+        //   [action.id]: [],
+        // },
       };
     default:
       return state;

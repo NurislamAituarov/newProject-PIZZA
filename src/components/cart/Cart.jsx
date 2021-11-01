@@ -8,19 +8,45 @@ const Cart = () => {
   const pizzaItem = useSelector((state) => state.totalCount);
   const price = useSelector((state) => state.totalPrices);
   const dispatch = useDispatch();
+  const state = useSelector((state) => state.filterPizzaId);
+  const totalCount = useSelector((state) => state.count);
+  // console.log(state);
 
-  // if (pizzaItem.length) {
-  //   pizzaItem.reduce((item, prev) => {
-  //     if (item.id !== prev.id) {
-  //       newArrayPizza.push(prev); //1!=2/2!=3/
-  //       return prev;
-  //     }
-  //     item.count = 1;
-  //     return prev;
-  //   }, pizzaItem[0].id);
-  // }
+  const statePizzaItems = Object.values(state).map((item) => {
+    return item[0];
+  });
+  // console.log(statePizzaItems);
 
-  console.log(pizzaItem);
+  const obj = {};
+  pizzaItem.forEach((item, i) => {
+    obj.name = item.name;
+    obj.price = item.price;
+    obj.type = item.type;
+    obj.size = item.size;
+  });
+
+  function onSubmit() {
+    const div = document.createElement('div');
+    document.querySelector('.cart__bottom').appendChild(div);
+    div.classList.add('added-words');
+    div.innerHTML = 'оплата обрабатывается';
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj),
+    })
+      .then((response) => {
+        div.innerHTML = 'оплата прошла успешно';
+        return response.text();
+      })
+      .then((data) => console.log(data))
+      .finally(() => {
+        setTimeout(() => {
+          dispatch(deletedBasket());
+          div.remove();
+        }, 2000);
+      });
+  }
 
   return (
     <div className="content">
@@ -99,15 +125,15 @@ const Cart = () => {
             </div>
           </div>
           <div className="content__items__cart">
-            {pizzaItem.map((item) => {
-              return <CartItems key={item.id} item={item} />;
+            {statePizzaItems.map((item) => {
+              return <CartItems key={item.id} item={item} countTotal={state} />;
             })}
           </div>
           <div className="cart__bottom">
             <div className="cart__bottom-details">
               <span>
                 {' '}
-                Всего пицц: <b>{pizzaItem.length} шт.</b>{' '}
+                Всего пицц: <b>{totalCount} шт.</b>{' '}
               </span>
               <span>
                 {' '}
@@ -133,7 +159,7 @@ const Cart = () => {
 
                 <span>Вернуться назад</span>
               </NavLink>
-              <div className="button pay-btn">
+              <div onClick={onSubmit} className="button pay-btn">
                 <span>Оплатить сейчас</span>
               </div>
             </div>
