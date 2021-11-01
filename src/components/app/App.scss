@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+  padding: 8% 10%;
+  background-color: rgb(189, 145, 0);
+}
+.wrapper {
+  border-radius: 20px;
+  background-color: white;
+  max-width: 100%;
+  margin: 0 auto;
+  .container {
+    padding: 0px 50px;
+    h2 {
+      margin-bottom: 20px;
+      text-align: start;
+      font-size: 35px;
+    }
+  }
+}
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms ease-in;
+}
