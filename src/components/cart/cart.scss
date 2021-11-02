@@ -85,20 +85,20 @@
 //   opacity: 0;
 //   transition: opacity 500ms ease-in;
 // }
-.my-node-enter {
+.cart-node-enter {
   opacity: 0;
   transform: translateX(-1100px);
 }
-.my-node-enter-active {
+.cart-node-enter-active {
   opacity: 1;
   /* transition: opacity 1500ms ease-in; */
   transform: translateX(50px);
 }
-.my-node-exit {
+.cart-node-exit {
   opacity: 1;
   transform: translateX(50px);
 }
-.my-node-exit-active {
+.cart-node-exit-active {
   opacity: 0;
   /* transition: opacity 1500ms ease-in; */
   transform: translateX(-1100px);

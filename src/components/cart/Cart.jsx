@@ -127,7 +127,7 @@ const Cart = () => {
           </div>
           <TransitionGroup components="div" className="content__items__cart">
             {statePizzaItems.map((item) => (
-              <CSSTransition key={item.id} timeout={500} classNames="my-node">
+              <CSSTransition key={item.id} timeout={500} classNames="cart-node">
                 <CartItems key={item.id} item={item} countTotal={state} />
               </CSSTransition>
             ))}
