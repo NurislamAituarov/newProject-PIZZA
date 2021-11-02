@@ -3,6 +3,7 @@ import CartItems from './CartItems';
 import './cart.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletedBasket } from '../../action/action';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const Cart = () => {
   const pizzaItem = useSelector((state) => state.totalCount);
@@ -124,11 +125,13 @@ const Cart = () => {
               <span>Очистить корзину</span>
             </div>
           </div>
-          <div className="content__items__cart">
-            {statePizzaItems.map((item) => {
-              return <CartItems key={item.id} item={item} countTotal={state} />;
-            })}
-          </div>
+          <TransitionGroup components="div" className="content__items__cart">
+            {statePizzaItems.map((item) => (
+              <CSSTransition key={item.id} timeout={500} classNames="my-node">
+                <CartItems key={item.id} item={item} countTotal={state} />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
           <div className="cart__bottom">
             <div className="cart__bottom-details">
               <span>

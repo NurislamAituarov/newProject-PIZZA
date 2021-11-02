@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import './cartItems.scss';
 import { useDispatch } from 'react-redux';
 import { deletedBasketItem } from '../../action/action';
 
-const CartItems = ({ item, countTotal }) => {
+const CartItems = memo(({ item, countTotal }) => {
   const dispatch = useDispatch();
   const cartItem = useRef();
   const hr = useRef();
@@ -19,6 +19,7 @@ const CartItems = ({ item, countTotal }) => {
 
   const totalCount = countTotal[item.id];
   // console.log(item, countTotal, totalCount.length);
+
   return (
     <>
       <div ref={cartItem} className="cart__item">
@@ -50,6 +51,6 @@ const CartItems = ({ item, countTotal }) => {
       <hr ref={hr}></hr>
     </>
   );
-};
+});
 
 export default CartItems;

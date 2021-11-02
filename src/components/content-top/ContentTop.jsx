@@ -1,10 +1,11 @@
 import './content-top.scss';
 import { useState, useRef, useEffect, memo } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSortBy, setCategoryFilter } from '../../action/action';
 
 const ContentTop = memo(({ state }) => {
-  const [active, setActive] = useState('Все');
+  const category = useSelector((state) => state.filterCategory);
+  const [active, setActive] = useState(state[category]);
   const [sort, setSort] = useState(false);
   const [sortFilter, setSortFilter] = useState('популярности');
   const refItem = useRef();
@@ -30,7 +31,6 @@ const ContentTop = memo(({ state }) => {
     setActive(item);
     dispatch(setCategoryFilter(index));
   };
-
   return (
     <div className="content__top">
       <div className="categories">

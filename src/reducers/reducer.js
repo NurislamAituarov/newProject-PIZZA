@@ -59,7 +59,9 @@ const reducer = (state = initialState, action) => {
         state.filterPizzaId[action.id] && state.count - state.filterPizzaId[action.id].length;
       const newTotalPrices =
         state.totalPrices -
-        state.filterPizzaId[action.id].filter((item) => item.id === action.id)[0].price;
+        state.filterPizzaId[action.id]
+          .filter((item) => item.id === action.id)
+          .reduce((acu, prev) => acu + prev.price, 0);
       delete state.filterPizzaId[action.id];
       return {
         ...state,

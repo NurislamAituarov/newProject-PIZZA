@@ -10,13 +10,15 @@ const Header = () => {
   return (
     <div className="header">
       <div className="container">
-        <div className="header__logo">
-          <img width="80" src={pizza} alt="Pizza logo" />
-          <div>
-            <h1>React Pizza</h1>
-            <p>самая вкусная пицца во вселенной</p>
+        <NavLink exact to="/">
+          <div className="header__logo">
+            <img width="80" src={pizza} alt="Pizza logo" />
+            <div>
+              <h1>React Pizza</h1>
+              <p>самая вкусная пицца во вселенной</p>
+            </div>
           </div>
-        </div>
+        </NavLink>
         <div className="header__cart">
           <NavLink exact to="/Cart" className="button button--cart">
             <span>{prices} ₽</span>
