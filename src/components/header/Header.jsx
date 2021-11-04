@@ -1,18 +1,27 @@
 import './header.scss';
 import pizza from '../../png/pizza.png';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { offcanvas } from '../../action/action';
 
 const Header = () => {
   const addedPizzas = useSelector((state) => state.count);
 
   const prices = useSelector((state) => state.totalPrices);
+
+  const dispatch = useDispatch();
   return (
     <div className="header">
       <div className="container">
         <NavLink exact to="/">
           <div className="header__logo">
-            <img width="80" src={pizza} alt="Pizza logo" />
+            <img
+              onClick={() => dispatch(offcanvas())}
+              width="100"
+              height="100"
+              src={pizza}
+              alt="Pizza logo"
+            />
             <div>
               <h1>React Pizza</h1>
               <p>самая вкусная пицца во вселенной</p>

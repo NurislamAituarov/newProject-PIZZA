@@ -8,6 +8,7 @@ const initialState = {
   category: 0,
   totalPrices: 0,
   totalCount: [],
+  showOffcanvas: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -73,6 +74,11 @@ const reducer = (state = initialState, action) => {
         //   ...state.filterPizza,
         //   [action.id]: [],
         // },
+      };
+    case 'OFF_CANVAS':
+      return {
+        ...state,
+        showOffcanvas: state.showOffcanvas ? false : true,
       };
     default:
       return state;
