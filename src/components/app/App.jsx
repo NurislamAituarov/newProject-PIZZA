@@ -3,10 +3,13 @@ import ContentTop from '../content-top/ContentTop';
 import './App.scss';
 import ContentsItem from '../contents-item/ContentsItem';
 import { Route } from 'react-router-dom';
-import Cart from '../cart/Cart';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { memo } from 'react';
+import { memo, lazy, Suspense } from 'react';
+import { Helmet } from 'react-helmet';
+
+// динамические импорты
+const Cart = lazy(() => import('../cart/Cart'));
 
 const App = memo(() => {
   const test = useSelector((state) => state);
@@ -57,27 +60,35 @@ const App = memo(() => {
   });
   // console.log(filter, filterState);
   return (
-    <div className="App">
-      <div className="wrapper">
-        <Header />
-        <Route exact path="/">
-          <div className="content">
-            <div className="container">
-              <ContentTop state={array} />
-              <h2 className="content__title">Все пиццы</h2>
-              <TransitionGroup components="div" className="content__items">
-                {filterState.map((item) => (
-                  <CSSTransition key={item.id} timeout={500} classNames="my-node">
-                    <ContentsItem key={item.id} state={item} />
-                  </CSSTransition>
-                ))}
-              </TransitionGroup>
+    <>
+      <Helmet>
+        <meta name="description" content="Web site created using create-react-app" />
+        <title>React Pizza</title>
+      </Helmet>
+      <div className="App">
+        <div className="wrapper">
+          <Header />
+          <Route exact path="/">
+            <div className="content">
+              <div className="container">
+                <ContentTop state={array} />
+                <h2 className="content__title">Все пиццы</h2>
+                <TransitionGroup components="div" className="content__items">
+                  {filterState.map((item) => (
+                    <CSSTransition key={item.id} timeout={500} classNames="my-node">
+                      <ContentsItem key={item.id} state={item} />
+                    </CSSTransition>
+                  ))}
+                </TransitionGroup>
+              </div>
             </div>
-          </div>
-        </Route>
-        <Route exact path="/Cart" component={Cart} />
+          </Route>
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <Route exact path="/Cart" component={Cart} />
+          </Suspense>
+        </div>
       </div>
-    </div>
+    </>
   );
 });
 
