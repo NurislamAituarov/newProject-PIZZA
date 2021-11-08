@@ -21,17 +21,19 @@ const Cart = () => {
 
   const obj = {};
   pizzaItem.forEach((item, i) => {
-    obj.name = item.name;
-    obj.price = item.price;
-    obj.type = item.type;
-    obj.size = item.size;
+    obj.name = obj.name ? obj.name + ', ' + item.name : item.name;
+    obj.price = obj.price ? +obj.price + +item.price : item.price;
+    obj.type = obj.type ? obj.type + ', ' + item.type : item.type;
+    obj.tips = (obj.price * 5) / 100;
+    // obj.size = item.size;
   });
-
+  // console.log(obj);
   function onSubmit() {
     const div = document.createElement('div');
     document.querySelector('.cart__bottom').appendChild(div);
     div.classList.add('added-words');
     div.innerHTML = 'оплата обрабатывается';
+
     fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -39,9 +41,17 @@ const Cart = () => {
     })
       .then((response) => {
         div.innerHTML = 'оплата прошла успешно';
-        return response.text();
+        return response.json();
       })
-      .then((data) => console.log(data))
+      .then((data) => {
+        const div = document.createElement('div');
+        div.innerHTML = `чаевые ${data.tips} ₽`;
+        document.getElementById('price-num').appendChild(div);
+        console.log(data);
+        setTimeout(() => {
+          div.remove();
+        }, 5000);
+      })
       .finally(() => {
         setTimeout(() => {
           dispatch(deletedBasket());
@@ -144,7 +154,7 @@ const Cart = () => {
                   {' '}
                   Всего пицц: <b>{totalCount} шт.</b>{' '}
                 </span>
-                <span>
+                <span id="price-num">
                   {' '}
                   Сумма заказа: <b>{price} ₽</b>{' '}
                 </span>
