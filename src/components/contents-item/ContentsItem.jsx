@@ -11,11 +11,11 @@ const ContentsItem = memo(({ state }) => {
   const [activeSizes, setActiveSizes] = useState(state.sizes[0]);
   const totalAddAll = useSelector((state) => state.filterPizzaId);
   const dispatch = useDispatch();
-
+  // console.log('render');
   function onSelectType(type) {
     setActiveType(type);
   }
-  function addToBasket() {
+  const addToBasket = () => {
     const item = {
       id: state.id,
       name: state.name,
@@ -26,7 +26,7 @@ const ContentsItem = memo(({ state }) => {
     };
 
     dispatch(addPizza(item));
-  }
+  };
 
   return (
     <div className="pizza-block">

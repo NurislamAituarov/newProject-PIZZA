@@ -5,14 +5,14 @@ import ContentsItem from '../contents-item/ContentsItem';
 import { Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { memo, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 
 // динамические импорты
 const Cart = lazy(() => import('../cart/Cart'));
 
-const App = memo(() => {
-  const test = useSelector((state) => state);
+const App = () => {
+  const filterPrice = useSelector((state) => state.filterPrice);
   const filter = useSelector((state) => state.filterCategory);
   const array = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
@@ -71,7 +71,7 @@ const App = memo(() => {
           <Route exact path="/">
             <div className="content">
               <div className="container">
-                <ContentTop state={array} />
+                <ContentTop state={array} filterPrice={filterPrice} />
                 <h2 className="content__title">Все пиццы</h2>
                 <TransitionGroup components="div" className="content__items">
                   {filterState.map((item) => (
@@ -90,6 +90,6 @@ const App = memo(() => {
       </div>
     </>
   );
-});
+};
 
 export default App;

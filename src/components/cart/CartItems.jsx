@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef } from 'react';
 import './cartItems.scss';
 import { useDispatch } from 'react-redux';
-import { deletedBasketItem } from '../../action/action';
+import { deletedBasketItem, countAdd, countRemove } from '../../action/action';
 
 const CartItems = memo(({ item, countTotal }) => {
   const dispatch = useDispatch();
@@ -18,8 +18,14 @@ const CartItems = memo(({ item, countTotal }) => {
   }, []);
 
   const totalCount = countTotal[item.id];
-  // console.log(item, countTotal, totalCount.length);
+  // console.log(countTotal, totalCount.length);
 
+  function totalCountAdd(id) {
+    dispatch(countAdd(id));
+  }
+  function totalCountRemove(id) {
+    dispatch(countRemove(id));
+  }
   return (
     <>
       <div ref={cartItem} className="cart__item">
@@ -36,9 +42,13 @@ const CartItems = memo(({ item, countTotal }) => {
         </div>
         <div className="second">
           <div className="cart__item-count">
-            <strong>-</strong>
+            <strong
+              style={totalCount.length === 1 ? { display: 'none' } : null}
+              onClick={() => totalCountRemove(item.id)}>
+              -
+            </strong>
             <b>{totalCount.length}</b>
-            <strong>+</strong>
+            <strong onClick={() => totalCountAdd(item.id)}>+</strong>
           </div>
           <div className="cart__item-price">
             <b>{item.price * totalCount.length} ₽</b>

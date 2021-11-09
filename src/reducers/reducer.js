@@ -9,6 +9,7 @@ const initialState = {
   totalPrices: 0,
   totalCount: [],
   showOffcanvas: false,
+  numPrices: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -68,12 +69,39 @@ const reducer = (state = initialState, action) => {
         ...state,
         count: newCount,
         totalPrices: newTotalPrices,
-
-        // totalCount: state.totalCount.filter((item) => item.id !== action.id),
-        // filterPizzaId: {
-        //   ...state.filterPizza,
-        //   [action.id]: [],
-        // },
+      };
+    case 'TOTAL_COUNT_ADD':
+      const a = state.filterPizzaId[action.payload];
+      a.push(state.filterPizzaId[action.payload][0]);
+      return {
+        ...state,
+        filterPizzaId: {
+          ...state.filterPizzaId,
+          [action.payload]: a,
+        },
+        count: state.count + 1,
+        totalPrices: state.totalPrices + state.filterPizzaId[action.payload][0].price,
+      };
+    case 'TOTAL_COUNT_REMOVE':
+      const b = state.filterPizzaId[action.payload];
+      b.pop();
+      if (b.length === 0) {
+        delete state.filterPizzaId[action.payload];
+      }
+      return {
+        ...state,
+        filterPizzaId: {
+          ...state.filterPizzaId,
+          [action.payload]: b,
+        },
+        count: state.count - 1,
+        totalPrices:
+          b.length !== 0
+            ? state.totalPrices - state.filterPizzaId[action.payload][0].price
+            : state.totalPrices - state.numPrices,
+        numPrices: state.filterPizzaId[action.payload]
+          ? state.filterPizzaId[action.payload][0].price
+          : state.numPrices,
       };
     case 'OFF_CANVAS':
       return {

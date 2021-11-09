@@ -3,16 +3,18 @@ import { useState, useRef, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortBy, setCategoryFilter } from '../../action/action';
 
-const ContentTop = memo(({ state }) => {
+const ContentTop = memo(({ state, filterPrice }) => {
   const category = useSelector((state) => state.filterCategory);
   const [active, setActive] = useState(state[category]);
   const [sort, setSort] = useState(false);
-  const [sortFilter, setSortFilter] = useState('популярности');
+  const [sortFilter, setSortFilter] = useState(filterPrice);
   const refItem = useRef();
   const dispatch = useDispatch();
 
+  // console.log('render');
   useEffect(() => {
-    document.body.addEventListener('click', (e) => {
+    function hidden(e) {
+      e.stopPropagation();
       if (!e.path.includes(refItem.current)) {
         setSort(false);
       }
@@ -21,7 +23,12 @@ const ContentTop = memo(({ state }) => {
           setSort(false);
         }
       });
-    });
+    }
+    document.body.addEventListener('click', hidden);
+
+    return () => {
+      document.body.removeEventListener('click', hidden);
+    };
   }, []);
 
   const onSortFilter = () => {

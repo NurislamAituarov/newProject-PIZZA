@@ -37,10 +37,12 @@
     }
   }
 }
-hr {
-  border: none;
-  margin: 20px 0 30px 0;
-  height: 3px;
-  background-color: rgba(243, 243, 243, 0.4);
-  transition: 0.4s;
+.content__items__cart {
+  hr {
+    border: none;
+    margin: 20px 0 30px 0;
+    height: 3px;
+    background-color: rgba(243, 243, 243, 0.4);
+    transition: 0.4s;
+  }
 }
