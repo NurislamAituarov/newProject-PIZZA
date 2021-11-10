@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, memo } from 'react';
 import { addPizza } from '../../action/action';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 const ContentsItem = memo(({ state }) => {
   const typeName = ['тонкое', 'традиционное'];
   const sizes = [26, 30, 40];
@@ -30,7 +33,12 @@ const ContentsItem = memo(({ state }) => {
 
   return (
     <div className="pizza-block">
-      <img className="pizza-block__image" src={state.imageUrl} alt="Pizza" />
+      <LazyLoadImage
+        effect="blur"
+        className="pizza-block__image"
+        src={state.imageUrl}
+        alt="Pizza"
+      />
       <h4 className="pizza-block__title">{state.name}</h4>
       <div className="pizza-block__selector">
         <ul>
