@@ -91,3 +91,26 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media (max-width: 550px) {
+  .content__items {
+    grid-template-columns: 1fr;
+    .pizza-block {
+      .pizza-block__bottom {
+        .button {
+          padding: 10px;
+        }
+      }
+      img {
+        max-width: 150px;
+      }
+    }
+    .pizza-block__selector {
+      margin: 0 auto;
+      max-width: 250px;
+      ul:nth-child(2) {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

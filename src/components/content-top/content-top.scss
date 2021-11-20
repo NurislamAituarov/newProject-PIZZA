@@ -83,11 +83,12 @@
     text-align: start;
     display: block;
     .categories {
-      width: 600px;
+      max-width: 300px;
       ul {
         display: inline-block;
         li {
-          padding: 10px;
+          padding: 5px 10px;
+          margin-bottom: 5px;
         }
       }
     }

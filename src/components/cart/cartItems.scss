@@ -15,7 +15,7 @@
   .second {
     display: flex;
     justify-content: space-between;
-    width: 500px;
+    max-width: 500px;
     .cart__item-count {
       width: 50px;
       display: flex;
@@ -44,5 +44,26 @@
     height: 3px;
     background-color: rgba(243, 243, 243, 0.4);
     transition: 0.4s;
+  }
+}
+
+// media
+
+@media (max-width: 400px) {
+  .cart__item {
+    display: block;
+    .first {
+      display: block;
+    }
+    .second {
+      justify-content: space-around;
+    }
+  }
+  .cart__bottom {
+    .cart__bottom-buttons {
+      .button {
+        padding: 10px;
+      }
+    }
   }
 }

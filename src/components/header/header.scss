@@ -21,7 +21,7 @@
         color: rgb(0, 0, 0);
       }
       p {
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(105, 105, 105, 0.5);
       }
     }
     a {
@@ -48,4 +48,27 @@
 }
 .header__cart:hover {
   background-color: black;
+}
+
+// media
+
+@media (max-width: 800px) {
+  .wrapper .container {
+    display: block;
+    .header__cart {
+      max-width: 150px;
+    }
+  }
+  .header {
+    padding: 20px;
+    padding-bottom: 0;
+  }
+  .header .container .header__logo {
+    display: block;
+    div {
+      h1 {
+        font-size: 35px;
+      }
+    }
+  }
 }

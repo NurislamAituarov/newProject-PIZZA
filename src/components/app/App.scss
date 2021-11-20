@@ -31,3 +31,12 @@
   opacity: 0;
   transition: opacity 500ms ease-in;
 }
+
+@media (max-width: 400px) {
+  .wrapper .container {
+    padding: 15px;
+    .content__title {
+      font-size: 25px;
+    }
+  }
+}
