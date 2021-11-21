@@ -137,7 +137,10 @@ const Cart = () => {
                 </span>
               </div>
               <div className="cart__bottom-buttons">
-                <NavLink exact to="/" className="button button--outline button--add go-back-btn">
+                <NavLink
+                  exact
+                  to="/newProject-PIZZA"
+                  className="button button--outline button--add go-back-btn">
                   <svg
                     width="8"
                     height="14"

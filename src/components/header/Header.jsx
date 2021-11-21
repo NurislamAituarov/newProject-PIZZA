@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="container">
-        <NavLink exact to="/">
+        <NavLink exact to="/newProject-PIZZA">
           <div className="header__logo">
             <img
               onClick={() => dispatch(offcanvas())}
