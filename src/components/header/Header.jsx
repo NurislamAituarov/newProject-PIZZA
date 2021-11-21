@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="container">
-        <NavLink exact to="/newProject-PIZZA">
+        <NavLink to="/newProject-PIZZA">
           <div className="header__logo">
             <img
               onClick={() => dispatch(offcanvas())}
@@ -29,7 +29,7 @@ const Header = () => {
           </div>
         </NavLink>
         <div className="header__cart">
-          <NavLink exact to="/Cart" className="button button--cart">
+          <NavLink to="/Cart" className="button button--cart">
             <span>{prices} ₽</span>
             <div className="button__delimiter"></div>
             <svg

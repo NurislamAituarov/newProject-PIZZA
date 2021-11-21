@@ -103,3 +103,16 @@
   /* transition: opacity 1500ms ease-in; */
   transform: translateX(-1100px);
 }
+
+// media
+
+@media (max-width: 400px) {
+  .cart {
+    .cart__top {
+      display: block;
+      .cart__clear {
+        margin: 0 auto;
+      }
+    }
+  }
+}

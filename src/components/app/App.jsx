@@ -68,7 +68,7 @@ const App = () => {
       <div className="App">
         <div className="wrapper">
           <Header />
-          <Route exact path="/newProject-PIZZA">
+          <Route path="/newProject-PIZZA">
             <div className="content">
               <div className="container">
                 <ContentTop state={array} filterPrice={filterPrice} />

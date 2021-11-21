@@ -14,8 +14,8 @@
   }
   .second {
     display: flex;
-    justify-content: space-between;
-    max-width: 500px;
+    justify-content: space-around;
+    width: 500px;
     .cart__item-count {
       width: 50px;
       display: flex;
@@ -56,7 +56,8 @@
       display: block;
     }
     .second {
-      justify-content: space-around;
+      width: 200px;
+      margin: 0 auto;
     }
   }
   .cart__bottom {
