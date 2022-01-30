@@ -2,6 +2,7 @@ import { memo, useEffect, useRef } from 'react';
 import './cartItems.scss';
 import { useDispatch } from 'react-redux';
 import { deletedBasketItem, countAdd, countRemove } from '../../action/action';
+import Close from '../svg/Close';
 
 const CartItems = memo(({ item, countTotal }) => {
   const dispatch = useDispatch();
@@ -13,12 +14,11 @@ const CartItems = memo(({ item, countTotal }) => {
       hr.current.style.backgroundColor = '#e2b00b';
     });
     cartItem.current.addEventListener('mouseout', () => {
-      hr.current.style.backgroundColor = 'rgba(243, 243, 243, 0.4)';
+      hr.current.style.backgroundColor = 'rgba(202, 202, 202, 0.5)';
     });
   }, []);
 
   const totalCount = countTotal[item.id];
-  // console.log(countTotal, totalCount.length);
 
   function totalCountAdd(id) {
     dispatch(countAdd(id));
@@ -26,6 +26,7 @@ const CartItems = memo(({ item, countTotal }) => {
   function totalCountRemove(id) {
     dispatch(countRemove(id));
   }
+
   return (
     <>
       <div ref={cartItem} className="cart__item">
@@ -54,7 +55,9 @@ const CartItems = memo(({ item, countTotal }) => {
             <b>{item.price * totalCount.length} ₽</b>
           </div>
           <div className="cart__item-remove">
-            <span onClick={() => dispatch(deletedBasketItem(item.id))}>X</span>
+            <span onClick={() => dispatch(deletedBasketItem(item.id))}>
+              <Close />
+            </span>
           </div>
         </div>
       </div>

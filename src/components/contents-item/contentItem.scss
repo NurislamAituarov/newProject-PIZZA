@@ -71,18 +71,23 @@
   padding: 25px 0;
   font-size: 20px;
   .button--add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     white-space: nowrap;
     cursor: pointer;
-    padding: 5%;
+    padding: 10px 20px;
     background-color: rgb(206, 202, 17);
     border-radius: 10px;
+    transition: 0.3s;
     span {
       margin: 0 10px;
     }
-  }
-  .button--add:hover {
-    color: white;
-    background-color: rgb(80, 72, 0);
+
+    &:hover {
+      color: white;
+      background-color: rgb(80, 72, 0);
+    }
   }
 }
 
@@ -96,9 +101,20 @@
   .content__items {
     grid-template-columns: 1fr;
     .pizza-block {
+      border: 1px solid rgb(184, 184, 184, 0.5);
+      border-radius: 10px;
+      padding: 15px;
       .pizza-block__bottom {
+        padding: 15px 5px;
+        width: 250px;
+        margin: 0 auto;
+        .pizza-block__price {
+          font-size: 16px;
+        }
         .button {
-          padding: 10px;
+          border-radius: 6px;
+          padding: 5px 10px;
+          font-size: 16px;
         }
       }
       img {

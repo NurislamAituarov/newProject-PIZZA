@@ -15,7 +15,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_SORT_BY':
-      // console.log(action.payload);
       return {
         ...state,
         filterPrice: action.payload,

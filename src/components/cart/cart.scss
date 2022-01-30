@@ -46,10 +46,11 @@
       color: white;
       cursor: pointer;
       transition: 0.5s;
+      &:hover {
+        color: black;
+      }
     }
-    .pay-btn:hover {
-      color: black;
-    }
+
     .button--add {
       padding: 10px 20px;
       border-radius: 10px;
@@ -57,13 +58,19 @@
       color: rgb(214, 214, 214);
       border: 1px solid rgb(228, 228, 228);
       transition: 0.5s;
+      svg {
+        margin-bottom: 3px;
+      }
       span {
         margin-left: 5px;
       }
-    }
-    .button--add:hover {
-      background-color: #e2b00b;
-      color: black;
+      &:hover {
+        background-color: #e2b00b;
+        color: black;
+        svg {
+          fill: black;
+        }
+      }
     }
   }
 }
@@ -108,9 +115,12 @@
 
 @media (max-width: 400px) {
   .cart {
+    margin: 0;
     .cart__top {
-      display: block;
-      .cart__clear {
+      margin-bottom: 10px;
+    }
+    .cart__item {
+      .first {
         margin: 0 auto;
       }
     }

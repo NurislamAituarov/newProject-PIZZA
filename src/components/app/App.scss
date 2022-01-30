@@ -32,11 +32,23 @@
   transition: opacity 500ms ease-in;
 }
 
+@media (max-width: 868px) {
+  .App {
+    padding: 20px;
+  }
+}
+
 @media (max-width: 400px) {
-  .wrapper .container {
-    padding: 15px;
-    .content__title {
-      font-size: 25px;
+  .App {
+    padding: 0;
+  }
+  .wrapper {
+    border-radius: 0px;
+    .container {
+      padding: 15px;
+      .content__title {
+        font-size: 25px;
+      }
     }
   }
 }

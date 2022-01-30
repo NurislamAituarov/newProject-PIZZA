@@ -31,21 +31,26 @@
 .sort {
   position: relative;
   svg {
+    margin-top: 5px;
     cursor: pointer;
-    transform: rotateX(180deg) translateY(3px);
+    transform: rotateX(180deg) translateY(1px);
     margin-right: 5px;
   }
   .svg {
-    transform: rotateX(360deg) translateY(-3px);
+    transform: rotateX(360deg) translateY(-1px);
   }
 }
 
 .sort__label {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   span {
     text-decoration: underline;
     color: rgb(185, 142, 0);
     cursor: pointer;
+    margin-left: 5px;
   }
   letter-spacing: 1px;
 }
@@ -60,6 +65,7 @@
   box-shadow: 0px 0px 5px 1px rgb(212, 205, 188);
   position: absolute;
   top: 40px;
+  z-index: 100;
   ul {
     padding: 0;
   }
@@ -81,12 +87,31 @@
 @media (max-width: 1300px) {
   .content__top {
     text-align: start;
-    display: block;
+    flex-wrap: wrap;
     .categories {
-      max-width: 300px;
+      display: none;
+    }
+    .sort {
+      width: 260px;
+      svg {
+        margin-top: 3px;
+      }
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .content__top {
+    margin-bottom: 10px;
+    .categories {
+      max-width: 100%;
       ul {
         display: inline-block;
         li {
+          border-radius: 7px;
           padding: 5px 10px;
           margin-bottom: 5px;
         }
