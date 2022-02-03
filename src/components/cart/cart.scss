@@ -64,6 +64,9 @@
       span {
         margin-left: 5px;
       }
+      svg {
+        margin-top: 2px;
+      }
       &:hover {
         background-color: #e2b00b;
         color: black;
@@ -105,16 +108,27 @@
     margin: 0;
     .cart__top {
       margin-bottom: 10px;
-    }
-    .cart__item {
-      .first {
-        margin: 0 auto;
+      .cart__clear {
+        width: max-content;
+        font-size: 15px;
+        svg {
+          margin-right: 5px;
+        }
       }
     }
+
     .cart__bottom {
       .cart__bottom-buttons {
         .button {
+          width: 50%;
           padding: 10px;
+        }
+        .go-back-btn {
+          border-radius: 8px 0 0 8px;
+        }
+        .pay-btn {
+          border-radius: 0 8px 8px 0;
+          border: 1px solid #e4e4e4;
         }
       }
     }

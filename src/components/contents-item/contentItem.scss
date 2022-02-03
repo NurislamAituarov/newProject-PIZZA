@@ -66,10 +66,13 @@
 
 .pizza-block__bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 25px 0;
   font-size: 20px;
+  .pizza-block__price {
+    font-size: 1rem;
+  }
   .button--add {
     display: flex;
     align-items: center;
@@ -83,7 +86,9 @@
     span {
       margin: 0 10px;
     }
-
+    svg {
+      margin-top: 5px;
+    }
     &:hover {
       color: white;
       background-color: rgb(80, 72, 0);
@@ -111,10 +116,13 @@
         .pizza-block__price {
           font-size: 16px;
         }
-        .button {
+        .button--add {
           border-radius: 6px;
           padding: 5px 10px;
           font-size: 16px;
+          svg {
+            margin-top: 3px;
+          }
         }
       }
       img {

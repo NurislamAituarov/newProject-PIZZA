@@ -38,6 +38,7 @@
       &:hover {
         svg {
           fill: red;
+          transform: rotate(180deg);
         }
       }
     }
@@ -66,6 +67,8 @@
     display: block;
     .first {
       display: block;
+      margin: 0 auto;
+      margin-bottom: 10px;
       .cart__item-info {
         text-align: center;
       }
