@@ -8,6 +8,7 @@
   background-color: white;
   max-width: 100%;
   margin: 0 auto;
+  position: relative;
   .container {
     padding: 0px 50px;
     h2 {
@@ -17,6 +18,20 @@
     }
   }
 }
+
+.btn__up {
+  display: none;
+  position: sticky;
+  bottom: 50px;
+  margin-left: 290px;
+  opacity: 0.5;
+  transition: 0.3s;
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
+}
+
 .my-node-enter {
   opacity: 0;
 }
@@ -36,9 +51,12 @@
   .App {
     padding: 20px;
   }
+  .wrapper .container {
+    padding: 20px;
+  }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 468px) {
   .App {
     padding: 0;
   }
@@ -49,6 +67,9 @@
       .content__title {
         font-size: 25px;
       }
+    }
+    .btn__up {
+      display: inline-block;
     }
   }
 }

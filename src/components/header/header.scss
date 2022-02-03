@@ -65,23 +65,24 @@
         padding: 0;
         flex-wrap: wrap;
         position: relative;
+
+        .header__logo {
+          display: block;
+          div {
+            h1 {
+              font-size: 35px;
+            }
+          }
+        }
         .header__cart {
           position: absolute;
           top: 0;
           right: 0;
-          max-width: 150px;
+          max-width: 165px;
           border-radius: 12px;
           padding: 10px 20px;
           margin-bottom: 10px;
         }
-      }
-    }
-  }
-  .header .container .header__logo {
-    display: block;
-    div {
-      h1 {
-        font-size: 35px;
       }
     }
   }

@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="header">
+    <div id="header" className="header">
       <div className="container">
         <NavLink to="/newProject-PIZZA">
           <div className="header__logo">
@@ -23,7 +23,7 @@ const Header = () => {
               src={pizza}
               alt="Pizza logo"
             />
-            <div>
+            <div className="header__title">
               <h1>React Pizza</h1>
               <p>самая вкусная пицца во вселенной</p>
             </div>

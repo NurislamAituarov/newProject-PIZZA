@@ -5,8 +5,9 @@ import ContentsItem from '../contents-item/ContentsItem';
 import { Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import uparrow from '../../image/uparrow.svg';
 
 // динамические импорты
 const Cart = lazy(() => import('../cart/Cart'));
@@ -15,7 +16,6 @@ const App = () => {
   const filterPrice = useSelector((state) => state.filterPrice);
   const filter = useSelector((state) => state.filterCategory);
   const array = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
   const state = useSelector((state) => {
     switch (state.filterPrice) {
       case 'популярности':
@@ -58,7 +58,16 @@ const App = () => {
         return el;
     }
   });
-  // console.log(filter, filterState);
+
+  function onClickUp(el) {
+    el.preventDefault();
+    const blockID = el.currentTarget.getAttribute('href');
+    document.querySelector(blockID).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+
   return (
     <>
       <Helmet>
@@ -86,6 +95,10 @@ const App = () => {
           <Suspense fallback={<h2>Loading...</h2>}>
             <Route exact path="/Cart" component={Cart} />
           </Suspense>
+
+          <a onClick={onClickUp} href="#header" className="btn__up">
+            <img src={uparrow} alt="up" width="30" height="30" />
+          </a>
         </div>
       </div>
     </>

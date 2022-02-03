@@ -1,17 +1,20 @@
-import './content-top.scss';
 import { useState, useRef, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortBy, setCategoryFilter } from '../../action/action';
+import BurgerMenu from '../burger-menu/BurgerMenu';
+import './content-top.scss';
+import cn from 'classnames';
 
 const ContentTop = memo(({ state, filterPrice }) => {
   const category = useSelector((state) => state.filterCategory);
   const [active, setActive] = useState(state[category]);
   const [sort, setSort] = useState(false);
   const [sortFilter, setSortFilter] = useState(filterPrice);
+  const [hamburger, setHamburger] = useState(false);
+
   const refItem = useRef();
   const dispatch = useDispatch();
 
-  // console.log('render');
   useEffect(() => {
     function hidden(e) {
       e.stopPropagation();
@@ -38,9 +41,14 @@ const ContentTop = memo(({ state, filterPrice }) => {
     setActive(item);
     dispatch(setCategoryFilter(index));
   };
+
   return (
     <div className="content__top">
-      <div className="categories">
+      <BurgerMenu hamburger={hamburger} setHamburger={setHamburger} />
+      <div
+        className={cn('categories', 'fade', {
+          show__category: hamburger,
+        })}>
         <ul>
           {state.map((item, index) => {
             return (
@@ -56,9 +64,8 @@ const ContentTop = memo(({ state, filterPrice }) => {
         </ul>
       </div>
       <div ref={refItem} className="sort">
-        <div className="sort__label">
+        <div onClick={onSortFilter} className="sort__label">
           <svg
-            onClick={onSortFilter}
             className={sort ? 'svg' : null}
             width="10"
             height="6"

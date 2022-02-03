@@ -16,9 +16,10 @@
         padding: 10px 30px;
         background-color: rgb(236, 202, 51);
         border-radius: 10px 30px;
-      }
-      li:hover {
-        background-color: rgb(194, 169, 31);
+        transition: 0.3s;
+        &:hover {
+          background-color: rgb(194, 169, 31);
+        }
       }
     }
     .active {
@@ -42,6 +43,7 @@
 }
 
 .sort__label {
+  cursor: pointer;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -49,7 +51,6 @@
   span {
     text-decoration: underline;
     color: rgb(185, 142, 0);
-    cursor: pointer;
     margin-left: 5px;
   }
   letter-spacing: 1px;
@@ -75,12 +76,27 @@
     list-style: none;
     padding: 6px 72px 5px 10px;
     cursor: pointer;
+    &:hover {
+      box-shadow: -3px -3px 5px 1px rgb(212, 205, 188);
+    }
   }
-  li:hover {
-    box-shadow: -3px -3px 5px 1px rgb(212, 205, 188);
-  }
+
   .active {
     color: rgb(170, 139, 0);
+  }
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 500ms;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -90,6 +106,9 @@
     flex-wrap: wrap;
     .categories {
       display: none;
+    }
+    .show__category {
+      display: block;
     }
     .sort {
       width: 260px;
@@ -107,7 +126,7 @@
   .content__top {
     margin-bottom: 10px;
     .categories {
-      max-width: 100%;
+      width: 100%;
       ul {
         display: inline-block;
         li {

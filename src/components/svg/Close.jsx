@@ -1,5 +1,3 @@
-import s from './SVG.scss';
-
 export default function Close() {
   return (
     <svg
