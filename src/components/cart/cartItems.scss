@@ -61,7 +61,7 @@
 
 // media
 
-@media (max-width: 400px) {
+@media screen and (max-width: 400px) {
   .cart__item {
     display: block;
     .first {
@@ -76,13 +76,6 @@
     .second {
       width: 200px;
       margin: 0 auto;
-    }
-  }
-  .cart__bottom {
-    .cart__bottom-buttons {
-      .button {
-        padding: 10px;
-      }
     }
   }
 }

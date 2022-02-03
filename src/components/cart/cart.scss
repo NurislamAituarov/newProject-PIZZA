@@ -38,6 +38,7 @@
   .cart__bottom-buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
     .pay-btn {
       padding: 10px 20px;
@@ -58,7 +59,8 @@
       color: rgb(214, 214, 214);
       border: 1px solid rgb(228, 228, 228);
       transition: 0.5s;
-
+      display: flex;
+      align-items: center;
       span {
         margin-left: 5px;
       }
@@ -98,7 +100,7 @@
 
 // media
 
-@media (max-width: 400px) {
+@media screen and (max-width: 400px) {
   .cart {
     margin: 0;
     .cart__top {
@@ -107,6 +109,13 @@
     .cart__item {
       .first {
         margin: 0 auto;
+      }
+    }
+    .cart__bottom {
+      .cart__bottom-buttons {
+        .button {
+          padding: 10px;
+        }
       }
     }
   }

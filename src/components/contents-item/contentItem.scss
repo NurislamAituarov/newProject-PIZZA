@@ -44,9 +44,9 @@
       padding: 5% 30%;
       white-space: nowrap;
       border-radius: 5px;
-    }
-    li:hover {
-      box-shadow: 1px 1px 1px 1px black;
+      &:hover {
+        box-shadow: 1px 1px 1px 1px black;
+      }
     }
   }
   padding: 10px;
@@ -124,8 +124,17 @@
     .pizza-block__selector {
       margin: 0 auto;
       max-width: 250px;
+      font-size: 12px;
+      ul:nth-child(1) {
+        li {
+          padding: 6px;
+        }
+      }
       ul:nth-child(2) {
         margin-bottom: 0px;
+        li {
+          padding: 5% 15%;
+        }
       }
     }
   }

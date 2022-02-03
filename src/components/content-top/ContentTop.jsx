@@ -18,7 +18,9 @@ const ContentTop = memo(({ state, filterPrice }) => {
   useEffect(() => {
     function hidden(e) {
       e.stopPropagation();
-      if (!e.path.includes(refItem.current)) {
+      const path = e.path || (e.composedPath && e.composedPath());
+
+      if (!path.includes(refItem.current)) {
         setSort(false);
       }
       document.addEventListener('keydown', (e) => {
